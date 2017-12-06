@@ -28,4 +28,10 @@
         android:layout_height="wrap_content"
         android:text="网络请求失败重连"/>
 
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="防抖"/>
+
 </LinearLayout>

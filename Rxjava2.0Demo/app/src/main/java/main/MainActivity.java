@@ -4,7 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.Toast;
 
+import com.jakewharton.rxbinding2.view.RxView;
+
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 import mode.dexloaderclass.R;
 import rx_retrofit_RepeatWhen.mode.Rxjava_Retrofit;
 import rx_retrofit_RetryWhen.mode.Rxjava_Retrofit_RetryWhen;
@@ -47,5 +54,29 @@ public class MainActivity extends Activity {
                 new Rxjava_Retrofit_RetryWhen().initRetrofit(MainActivity.this);
             }
         });
+        //防抖操作
+        RxView.clicks(findViewById(R.id.button7))
+                .throttleFirst(2, TimeUnit.SECONDS)//发送2秒，第一次的点击事件
+                .subscribe(new Observer<Object>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Object value) {
+                        Toast.makeText(MainActivity.this, "网络请求", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }
