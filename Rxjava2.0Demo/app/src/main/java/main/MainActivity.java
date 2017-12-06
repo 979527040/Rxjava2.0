@@ -7,6 +7,7 @@ import android.view.View;
 
 import mode.dexloaderclass.R;
 import rx_retrofit_RepeatWhen.mode.Rxjava_Retrofit;
+import rx_retrofit_RetryWhen.mode.Rxjava_Retrofit_RetryWhen;
 import rx_retrofit_Zip.mode.Rx_Retrofit_Zip;
 import rx_retrofit_recall.FlatMap.mode.NetRequest;
 
@@ -38,6 +39,12 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 //合并数据源
                 new Rx_Retrofit_Zip().initRetrofit(MainActivity.this);
+            }
+        });
+        findViewById(R.id.button6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Rxjava_Retrofit_RetryWhen().initRetrofit(MainActivity.this);
             }
         });
     }
